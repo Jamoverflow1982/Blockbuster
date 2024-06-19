@@ -2,7 +2,6 @@
 TP fin curso inicial
 Martina - Cristian - Patricio - Javier Monzon
 Preentrega 24-6-22
-Javier
 """
 import os
 
