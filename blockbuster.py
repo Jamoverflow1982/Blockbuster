@@ -12,20 +12,62 @@ alquilado = [{'usuario': '22555888', 'peliculas': ['El Padrino', 'Toy Story', 'T
 
 # Lista de usuarios
 lista_usuarios = [
-    {"id_usuario": 1, "dni": "22555888", "nombre_apellido": "Juan Carlos Peralta", "contacto": "1178998844", "Domicilio": "Av. Brasil 235", "psw": 123456},
-    {"id_usuario": 2, "dni": "22555888", "nombre_apellido": "Rodrigo Ramirez", "Domicilio": "Av. Mitre 4000", "contacto": "1178988891", "psw": 123456},
-    {"id_usuario": 3, "dni": "25555988", "nombre_apellido": "Lautaro Martinez", "contacto": "1169878444", "Domicilio": "Cno. Doctor Federico 2020", "psw": 123456},
-    {"id_usuario": 4, "dni": "32955788", "nombre_apellido": "Facundo Aguirre", "Domicilio": "Av. Miranda 7898", "contacto": "1178911844", "psw": 123456},
-    {"id_usuario": 5, "dni": "43955788", "nombre_apellido": "Leandro Paredes", "Domicilio": "ESporas 5467", "contacto": "1175915847", "psw": 123456},
-    {"id_usuario": 6, "dni": "19955588", "nombre_apellido": "Gonzalo Montiel", "Domicilio": "Av. Dardo Rocha 4589", "contacto": "1187987425", "psw": 123456}
+    {"id_usuario": 1,
+        "dni": "22555888",
+        "nombre_apellido": "Juan Carlos Peralta",
+        "contacto": "1178998844",
+        "Domicilio": "Av. Brasil 235",
+        "psw": 123456},
+    
+    {"id_usuario": 2, "dni": "22555888",
+        "nombre_apellido": "Rodrigo Ramirez",
+        "Domicilio": "Av. Mitre 4000",
+        "contacto": "1178988891",
+        "psw": 123456},
+    {"id_usuario": 3, "dni": "25555988",
+        "nombre_apellido": "Lautaro Martinez",
+        "contacto": "1169878444",
+        "Domicilio": "Cno. Doctor Federico 2020",
+        "psw": 123456},
+    {"id_usuario": 4, "dni": "32955788",
+        "nombre_apellido": "Facundo Aguirre",
+        "Domicilio": "Av. Miranda 7898",
+        "contacto": "1178911844",
+        "psw": 123456},
+    {"id_usuario": 5, "dni": "43955788",
+        "nombre_apellido": "Leandro Paredes",
+        "Domicilio": "ESporas 5467",
+        "contacto": "1175915847",
+        "psw": 123456},
+    {"id_usuario": 6, "dni": "19955588",
+        "nombre_apellido": "Gonzalo Montiel",
+        "Domicilio": "Av. Dardo Rocha 4589",
+        "contacto": "1187987425", "psw": 123456}
 ]
 
 # Películas disponibles
 peliculas = [
-    {'codigo_pelicula': 1, 'titulo_pelicula': 'El Padrino', 'genero_pelicula': 'Crimen, Drama', 'año_pelicula': 1972, 'descripcion_pelicula': 'La historia de una familia mafiosa italiana en los Estados Unidos.'},
-    {'codigo_pelicula': 2, 'titulo_pelicula': 'Toy Story', 'genero_pelicula': 'Animación, Aventura, Comedia', 'año_pelicula': 1995, 'descripcion_pelicula': 'Las aventuras de un grupo de juguetes que cobran vida cuando los humanos no están cerca.'},
-    {'codigo_pelicula': 3, 'titulo_pelicula': 'Titanic', 'genero_pelicula': 'Drama, Romance', 'año_pelicula': 1997, 'descripcion_pelicula': 'Una historia de amor a bordo del trágico RMS Titanic.'},
-    {'codigo_pelicula': 4, 'titulo_pelicula': 'El Rey León', 'genero_pelicula': 'Animación, Aventura, Drama', 'año_pelicula': 1994, 'descripcion_pelicula': 'La historia de un joven león llamado Simba que debe reclamar su lugar como rey.'}
+    {'codigo_pelicula': 1,
+        'titulo_pelicula': 'El Padrino',
+        'genero_pelicula': 'Crimen, Drama',
+        'año_pelicula': 1972,
+        'descripcion_pelicula': 'La historia de una familia mafiosa italiana en los Estados Unidos.'},
+    
+    {'codigo_pelicula': 2,
+        'titulo_pelicula': 'Toy Story',
+        'genero_pelicula': 'Animación, Aventura, Comedia',
+        'año_pelicula': 1995, 'descripcion_pelicula': 'Las aventuras de un grupo de juguetes que cobran vida cuando los humanos no están cerca.'},
+    
+    {'codigo_pelicula': 3,
+        'titulo_pelicula': 'Titanic',
+        'genero_pelicula': 'Drama, Romance',
+        'año_pelicula': 1997,
+        'descripcion_pelicula': 'Una historia de amor a bordo del trágico RMS Titanic.'},
+    
+    {'codigo_pelicula': 4,
+        'titulo_pelicula': 'El Rey León',
+        'genero_pelicula': 'Animación, Aventura, Drama',
+        'año_pelicula': 1994, 'descripcion_pelicula': 'La historia de un joven león llamado Simba que debe reclamar su lugar como rey.'}
 ]
 
 # Función para mostrar la lista de películas
@@ -169,14 +211,14 @@ def menuPrincipal():
         print(Back.BLUE+Fore.BLACK+' '*90)
         print(Back.BLUE+Fore.WHITE+Style.BRIGHT+'BIENVENIDOS A NUESTRO CLUB EN LINEA'.center(90,' '))
         print(Back.BLUE+Fore.BLACK+' '*90)
-        print(Fore.YELLOW + Style.BRIGHT + "****" * 25)
-        print(Fore.RED + Style.BRIGHT + "MENU PRINCIPAL".center(100, ' '))
-        print(Fore.YELLOW + Style.BRIGHT + "----" * 25)
+        print(Fore.YELLOW + Style.BRIGHT + "***" * 30)
+        print(Fore.CYAN + Style.BRIGHT + "MENU PRINCIPAL".center(100, ' '))
+        print(Fore.YELLOW + Style.BRIGHT + "---" * 30)
         print(Fore.YELLOW + Style.BRIGHT + "1. ALQUILER DE PELICULAS")
         print(Fore.YELLOW + Style.BRIGHT + "2. USUARIOS")
         print(Fore.YELLOW + Style.BRIGHT + "3. VER ALQUILERES")
         print(Fore.YELLOW + Style.BRIGHT + "4. SALIR")
-        print(Fore.YELLOW + Style.BRIGHT + "****" * 25)
+        print(Fore.YELLOW + Style.BRIGHT + "***" * 30)
         print()
         opcion = int(input(Fore.CYAN + Style.BRIGHT + "Seleccione una opción: "))
         os.system(sistema)
@@ -188,7 +230,7 @@ def menuPrincipal():
         elif opcion == 2:
             while True:
                 print(Fore.YELLOW + Style.BRIGHT + "****" * 25)
-                print(Fore.RED + Style.BRIGHT + "GESTIÓN DE USUARIOS".center(100, ' '))
+                print(Fore.CYAN + Style.BRIGHT + "GESTIÓN DE USUARIOS".center(100, ' '))
                 print(Fore.YELLOW + Style.BRIGHT + "----" * 25)
                 print(Fore.YELLOW + Style.BRIGHT + "1. Ver Usuarios")
                 print(Fore.YELLOW + Style.BRIGHT + "2. Agregar Usuario")
