@@ -95,35 +95,63 @@ def lista(peliculas):
 
 def autorizacion(usuarios, peliculas): #Autenticacion de usuario
     intento=3
-    usu=False
+    usu=False #Variable para validacion de usuario
+    print(Back.BLUE+Fore.YELLOW+Style.BRIGHT+' '*90)
+    print(Back.BLUE+Fore.YELLOW+Style.BRIGHT+'INGRESA TU DNI Y CONTRASEÑA PARA ALQUILAR PELICULAS!!!'.center(90,' '))
+    print(Back.BLUE+Fore.YELLOW+Style.BRIGHT+' '*90)
+    print()
     while intento!=0: #Busca en el diccionario de usuarios si se encuentra el DNI
         dni=input('Ingrese su DNI: ')
         i=0
         for usuario in usuarios:
             if usuario["dni"]==dni:
-                print(f'Bienvenido {usuario["nombre_apellido"]}')
+                print()
+                print(Back.WHITE+Fore.BLUE+Style.BRIGHT+' '*90)
+                print(Back.WHITE+Fore.BLUE+Style.BRIGHT+f'BIENVENIDO {usuario["nombre_apellido"]}!!!'.center(90,' '))
+                print(Back.WHITE+Fore.BLUE+Style.BRIGHT+' '*90)
+                print()
                 usu=True
                 intento=0
                 break
             i+=1
         if usu==False: #Si al buscar no coincide el DNI da 3 intentos para la busqueda
             intento-=1
-            print('El DNI no coincide con ningun usuario')
-            print(f'Le quedan {intento} intentos')
+            print()
+            print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+            print(Back.RED+Fore.WHITE+Style.BRIGHT+'EL DNI NO COINCIDE CON NINGUN USUARIO'.center(90,' '))
+            print(Back.RED+Fore.WHITE+Style.BRIGHT+f'LE QUEDAN {intento} INTENTOS'.center(90,' '))
+            print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+            print()
     if usu==True:
         usu=False
         intento=3
         while intento!=0: #Comprueba si la contraseña es correcta
             clave=input('Ingrese su contraseña: ')
             if usuarios[i]["psw"]==clave:
-                print('Contraseña correcta!')
+                print()
+                print(Back.GREEN+Fore.WHITE+Style.BRIGHT+' '*90)
+                print(Back.GREEN+Fore.WHITE+Style.BRIGHT+'¡ ¡ ¡ CONTRASEÑA CORRECTA ! ! !'.center(90,' '))
+                print(Back.GREEN+Fore.WHITE+Style.BRIGHT+' '*90)
+                print()
                 intento=0
                 usu=True
             else:
                 intento-=1
-                print('CONTRASEÑA INCORRECTA!')
-                print(f'Le quedan {intento} intentos')
-    if usu==False: print('NO SE PUDO AUTENTICAR USUARIO')
+                print()
+                print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+                print(Back.RED+Fore.WHITE+Style.BRIGHT+'CONTRASEÑA INCORRECTA!'.center(90,' '))
+                print(Back.RED+Fore.WHITE+Style.BRIGHT+f'LE QUEDAN {intento} INTENTOS'.center(90,' '))
+                print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+                print()
+    
+    if usu==False: 
+        print()
+        print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+        print(Back.RED+Fore.WHITE+Style.BRIGHT+'NO SE PUDO AUTENTICAR USUARIO'.center(90,' '))
+        print(Back.RED+Fore.WHITE+Style.BRIGHT+'VOLVIENDO AL MENU PRINCIPAL'.center(90,' '))
+        print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+        print()
+    
     return usu,i #Retorna si se pudo aprobar el acceso y en que posicion del diccionario esta el usuario
 
 def menuAlquiler(posUsuario, usuario, peliculas, alquilado):
@@ -147,7 +175,7 @@ def menuAlquiler(posUsuario, usuario, peliculas, alquilado):
         if peli==False: 
             print(f'La opcion {op} no pertenece a una pelicula')
             print('Intente nuevamente')
-        if peli==True:
+        else:
             while True:
                 agregar=input('¿Desea agregar otra pelicula mas? (S/N): ')
                 agregar=agregar.upper()
@@ -157,8 +185,9 @@ def menuAlquiler(posUsuario, usuario, peliculas, alquilado):
                         break
                     case "N":
                         break
-                    case "_":
+                    case _:
                         print('OPCION INVALIDA PRESIONE S o N')
+                        print('Intente nuevamente')
     print()
     print('Usted se llevara la(s) pelicula(s):')
     for cod in listaPelis:
@@ -178,23 +207,24 @@ print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+f'  #     # #       #     # #     # #  
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+f'  ######  ####### #######  #####  #    # ######   #####   #####     #    ####### #     #  ')
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+' '*90)
 print(Back.YELLOW+Fore.BLUE+Style.BRIGHT+f'by Martina Luppi, Cristian Alderete, Patricio Noce, Javier Monzon '.rjust(90,' '))
-print()
-print(Back.BLUE+Fore.BLACK+' '*90)
-print(Back.BLUE+Fore.WHITE+Style.BRIGHT+'BIENVENIDOS A NUESTRO CLUB EN LINEA'.center(90,' '))
-print(Back.BLUE+Fore.BLACK+' '*90)
-print(Back.YELLOW+Fore.BLACK+' '*90)
-print(Back.YELLOW+Fore.BLACK+'1 - ¿Sos usuario?'.center(90,' '))
-print(Back.YELLOW+Fore.BLACK+' '*90)
-print(Back.YELLOW+Fore.BLACK+'2 - ¿Como no sos usuario? Vamos a registrarte!!!'.center(90,' '))
-print(Back.YELLOW+Fore.BLACK+' '*90)
-print(Back.YELLOW+Fore.BLACK+'3 - Acceso para administradores'.center(90,' '))
-print(Back.YELLOW+Fore.BLACK+' '*90)
-print(Back.YELLOW+Fore.RED+'4 - SALIR'.center(90,' '))
-print(Back.YELLOW+Fore.BLACK+' '*90)
-print()
+
 while True:
+    print()
+    print(Back.BLUE+Fore.BLACK+' '*90)
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT+'BIENVENIDOS A NUESTRO CLUB EN LINEA'.center(90,' '))
+    print(Back.BLUE+Fore.BLACK+' '*90)
+    print(Back.YELLOW+Fore.BLACK+' '*90)
+    print(Back.YELLOW+Fore.BLACK+'1 - ¿Sos usuario?'.center(90,' '))
+    print(Back.YELLOW+Fore.BLACK+' '*90)
+    print(Back.YELLOW+Fore.BLACK+'2 - ¿Como no sos usuario? Vamos a registrarte!!!'.center(90,' '))
+    print(Back.YELLOW+Fore.BLACK+' '*90)
+    print(Back.YELLOW+Fore.BLACK+'3 - Acceso para administradores'.center(90,' '))
+    print(Back.YELLOW+Fore.BLACK+' '*90)
+    print(Back.YELLOW+Fore.RED+'4 - SALIR'.center(90,' '))
+    print(Back.YELLOW+Fore.BLACK+' '*90)
+    print()
     try:
-        op=int(input(Back.BLUE+Fore.WHITE+Style.BRIGHT+'Selecciona una opcion: '))
+        op=int(input(Fore.WHITE+Style.BRIGHT+'Selecciona una opcion: '))
         print()
         match op:
             case 1:
