@@ -205,7 +205,7 @@ def menuAlquiler(posUsuario, usuario, peliculas, alquilado):
                                 print(Back.RED+Fore.WHITE+Style.BRIGHT+'INTENTE NUEVAMENTE'.CENTER(90,' '))
                                 print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
                                 print()
-                    except ValueError:
+                    except AttributeError:
                         print()
                         print(Back.RED+Style.BRIGHT+Fore.WHITE+' '*90)
                         print(Back.RED+Style.BRIGHT+Fore.WHITE+'POR FAVOR INGRESE S o N'.center(90,' '))
