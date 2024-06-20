@@ -158,26 +158,36 @@ def menuAlquiler(posUsuario, usuario, peliculas, alquilado):
     peli=False
     listaPelis=[]
     print()
-    print(f'¿{usuario[posUsuario]["nombre_apellido"]} QUE QUIERES VER HOY?')
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT+' '*90)
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT+f'¿{usuario[posUsuario]["nombre_apellido"]} QUE QUIERES VER HOY?'.center(90,' '))
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT+' '*90)
     print()
     lista(peliculas)
-    print()
     while peli==False:
         i=0
-        op=int(input('Elije por numero de pelicula: '))
+        print()
+        op=int(input(Fore.WHITE+Style.BRIGHT+'Elije por numero de pelicula: '))
         for pelicula in peliculas:
             if pelicula["codigo_pelicula"]==op:
-                print(f'Usted esta por alquilar la pelicula {pelicula["titulo_pelicula"]}')
+                print()
+                print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+' '*90)
+                print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+f'Usted esta por alquilar la pelicula {pelicula["titulo_pelicula"]}'.center(90,' '))
+                print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+' '*90)
                 peli=True
                 listaPelis.append(pelicula["titulo_pelicula"])
                 break
             i+=1
         if peli==False: 
-            print(f'La opcion {op} no pertenece a una pelicula')
-            print('Intente nuevamente')
+            print()
+            print(Back.RED+Fore.WHITE+Style.BRIGHT+' *90')
+            print(Back.RED+Fore.WHITE+Style.BRIGHT+f'LA OPCION {op} NO PERTENECE A UNA PELICULA'.center(90,' '))
+            print(Back.RED+Fore.WHITE+Style.BRIGHT+'INTENTE NUEVAMENTE'.center(90,' '))
+            print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+            print()
         else:
             while True:
-                agregar=input('¿Desea agregar otra pelicula mas? (S/N): ')
+                print()
+                agregar=input(Fore.WHITE+Style.BRIGHT+'¿Desea agregar otra pelicula mas? (S/N): ')
                 agregar=agregar.upper()
                 match agregar:
                     case "S":
@@ -186,14 +196,20 @@ def menuAlquiler(posUsuario, usuario, peliculas, alquilado):
                     case "N":
                         break
                     case _:
-                        print('OPCION INVALIDA PRESIONE S o N')
-                        print('Intente nuevamente')
+                        print()
+                        print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+                        print(Back.RED+Fore.WHITE+Style.BRIGHT+'OPCION INVALIDA PRESIONE S o N'.CENTER(90,' '))
+                        print(Back.RED+Fore.WHITE+Style.BRIGHT+'INTENTE NUEVAMENTE'.CENTER(90,' '))
+                        print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+                        print()
     print()
-    print('Usted se llevara la(s) pelicula(s):')
+    print(Back.BLUE+Fore.YELLOW+Style.BRIGHT+'Usted se llevara la(s) pelicula(s):'.center(90,' '))
     for cod in listaPelis:
-        print(f"{cod}")
+        print(Back.WHITE+Fore.BLUE+Style.BRIGHT+f"{cod}".center(90,' '))
     print()
-    print('QUE DISFRUTE DEL ESPECTACULO!!!')
+    print(Back.BLUE+Fore.YELLOW+Style.BRIGHT+' '*90)
+    print(Back.BLUE+Fore.YELLOW+Style.BRIGHT+'¡ ¡ ¡ QUE DISFRUTE DEL ESPECTACULO ! ! !'.center(90,' '))
+    print(Back.BLUE+Fore.YELLOW+Style.BRIGHT+' '*90)
     alquilado.append({"usuario":usuario[posUsuario]["dni"], "peliculas":listaPelis})
 
 os.system(sistema)
@@ -232,7 +248,6 @@ while True:
                 if usuEncontrado==True:
                     menuAlquiler(pos, lista_usuarios, peliculas, alquilado)
                 print()
-                print (alquilado)
             case 2:
                 pass
             case 3:
