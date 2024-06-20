@@ -12,6 +12,161 @@ sistema='clear' #Limpieza pantalla Linux o Mac
 from colorama import Fore, Style, Back, init
 init(autoreset=True)
 
+#Peliculas alquiladas
+alquilado=[{'usuario': '22555888', 'peliculas': ['El Padrino', 'Toy Story', 'Titanic']}, {'usuario': '42555888', 'peliculas': ['El Rey León', 'Toy Story', 'El Padrino']}]
+
+#lista de usuarios 
+lista_usuarios = [
+        {
+            
+            "id_usuario":1,
+            "dni": "22555888",
+            "nombre_apellido": "Juan Carlos Peralta",
+            "contacto": "1178998844",
+            "psw":"123456"
+        },
+        {
+            
+            "id_usuario":2,
+            'dni': "22555888",
+            "nombre_apellido": "Rodrigo Ramirez",
+            "contacto": "1178988891",
+            "psw":"123456"
+        },
+        {
+            "id_usuario":3,
+            'dni': "42555888",
+            "nombre_apellido": "Julian Alvarez",
+            "contacto": "1158989687",
+            "psw":"123456"
+        },
+        {
+            
+            "id_usuario":4,
+            "dni": "25555988",
+            "nombre_apellido": "Lautaro Martinez",
+            "contacto": "1169878444",
+            "psw":"123456"
+        },
+        {
+            
+            "id_usuario":5,
+            "dni": "32955788",
+            "nombre_apellido": "Facundo Aguirre",
+            "contacto": "1178911844",
+            "psw":"123456"
+        }
+    ]
+peliculas = [
+        {
+            'codigo_pelicula': 1,
+            'titulo_pelicula': 'El Padrino',
+            'genero_pelicula': 'Crimen, Drama',
+            'año_pelicula': 1972,
+            'descripcion_pelicula': 'La historia de una familia mafiosa italiana en los Estados Unidos.',
+        },
+        {
+            'codigo_pelicula': 2,
+            'titulo_pelicula': 'Toy Story',
+            'genero_pelicula': 'Animación, Aventura, Comedia',
+            'año_pelicula': 1995,
+            'descripcion_pelicula': 'Las aventuras de un grupo de juguetes que cobran vida cuando los humanos no están cerca.',
+        },
+        {
+            'codigo_pelicula': 3,
+            'titulo_pelicula': 'Titanic',
+            'genero_pelicula': 'Drama, Romance',
+            'año_pelicula': 1997,
+            'descripcion_pelicula': 'Una historia de amor a bordo del trágico RMS Titanic.',
+        },
+        {
+            'codigo_pelicula': 4,
+            'titulo_pelicula': 'El Rey León',
+            'genero_pelicula': 'Animación, Aventura, Drama',
+            'año_pelicula': 1994,
+            'descripcion_pelicula': 'La historia de un joven león llamado Simba que debe reclamar su lugar como rey.',
+        }
+    ]
+
+def lista(peliculas):
+    for pelicula in peliculas:
+            print(f"{pelicula['codigo_pelicula']} {pelicula['titulo_pelicula']} {pelicula['genero_pelicula']} {pelicula['año_pelicula']} {pelicula['descripcion_pelicula']}")
+
+
+def autorizacion(usuarios, peliculas): #Autenticacion de usuario
+    intento=3
+    usu=False
+    while intento!=0: #Busca en el diccionario de usuarios si se encuentra el DNI
+        dni=input('Ingrese su DNI: ')
+        i=0
+        for usuario in usuarios:
+            if usuario["dni"]==dni:
+                print(f'Bienvenido {usuario["nombre_apellido"]}')
+                usu=True
+                intento=0
+                break
+            i+=1
+        if usu==False: #Si al buscar no coincide el DNI da 3 intentos para la busqueda
+            intento-=1
+            print('El DNI no coincide con ningun usuario')
+            print(f'Le quedan {intento} intentos')
+    if usu==True:
+        usu=False
+        intento=3
+        while intento!=0: #Comprueba si la contraseña es correcta
+            clave=input('Ingrese su contraseña: ')
+            if usuarios[i]["psw"]==clave:
+                print('Contraseña correcta!')
+                intento=0
+                usu=True
+            else:
+                intento-=1
+                print('CONTRASEÑA INCORRECTA!')
+                print(f'Le quedan {intento} intentos')
+    if usu==False: print('NO SE PUDO AUTENTICAR USUARIO')
+    return usu,i #Retorna si se pudo aprobar el acceso y en que posicion del diccionario esta el usuario
+
+def menuAlquiler(posUsuario, usuario, peliculas, alquilado):
+    peli=False
+    listaPelis=[]
+    print()
+    print(f'¿{usuario[posUsuario]["nombre_apellido"]} QUE QUIERES VER HOY?')
+    print()
+    lista(peliculas)
+    print()
+    while peli==False:
+        i=0
+        op=int(input('Elije por numero de pelicula: '))
+        for pelicula in peliculas:
+            if pelicula["codigo_pelicula"]==op:
+                print(f'Usted esta por alquilar la pelicula {pelicula["titulo_pelicula"]}')
+                peli=True
+                listaPelis.append(pelicula["titulo_pelicula"])
+                break
+            i+=1
+        if peli==False: 
+            print(f'La opcion {op} no pertenece a una pelicula')
+            print('Intente nuevamente')
+        if peli==True:
+            while True:
+                agregar=input('¿Desea agregar otra pelicula mas? (S/N): ')
+                agregar=agregar.upper()
+                match agregar:
+                    case "S":
+                        peli=False
+                        break
+                    case "N":
+                        break
+                    case "_":
+                        print('OPCION INVALIDA PRESIONE S o N')
+    print()
+    print('Usted se llevara la(s) pelicula(s):')
+    for cod in listaPelis:
+        print(f"{cod}")
+    print()
+    print('QUE DISFRUTE DEL ESPECTACULO!!!')
+    alquilado.append({"usuario":usuario[posUsuario]["dni"], "peliculas":listaPelis})
+
 os.system(sistema)
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+'GRUPO 14'.center(90,' '))
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+f'  ######  #       #######  #####  #    # ######  #     #  #####  ####### ####### ######   ')
@@ -43,7 +198,11 @@ while True:
         print()
         match op:
             case 1:
-                pass
+                usuEncontrado, pos = autorizacion(lista_usuarios, peliculas)
+                if usuEncontrado==True:
+                    menuAlquiler(pos, lista_usuarios, peliculas, alquilado)
+                print()
+                print (alquilado)
             case 2:
                 pass
             case 3:
