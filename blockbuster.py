@@ -12,7 +12,7 @@ sistema='clear' #Limpieza pantalla Linux o Mac
 from colorama import Fore, Style, Back, init
 init(autoreset=True)
 
-#Peliculas alquiladas
+#Peliculas alquiladas (Javier)
 alquilado=[{'usuario': '22555888', 'peliculas': ['El Padrino', 'Toy Story', 'Titanic']}, {'usuario': '42555888', 'peliculas': ['El Rey León', 'Toy Story', 'El Padrino']}]
 
 #lista de usuarios 
@@ -92,8 +92,8 @@ def lista(peliculas):
     for pelicula in peliculas:
             print(f"{pelicula['codigo_pelicula']} {pelicula['titulo_pelicula']} {pelicula['genero_pelicula']} {pelicula['año_pelicula']} {pelicula['descripcion_pelicula']}")
 
-
 def autorizacion(usuarios, peliculas): #Autenticacion de usuario
+    #Javier
     intento=3
     usu=False #Variable para validacion de usuario
     print(Back.BLUE+Fore.YELLOW+Style.BRIGHT+' '*90)
@@ -155,6 +155,7 @@ def autorizacion(usuarios, peliculas): #Autenticacion de usuario
     return usu,i #Retorna si se pudo aprobar el acceso y en que posicion del diccionario esta el usuario
 
 def menuAlquiler(posUsuario, usuario, peliculas, alquilado):
+    #Javier
     peli=False
     listaPelis=[]
     print()
@@ -164,44 +165,58 @@ def menuAlquiler(posUsuario, usuario, peliculas, alquilado):
     print()
     lista(peliculas)
     while peli==False:
-        i=0
-        print()
-        op=int(input(Fore.WHITE+Style.BRIGHT+'Elije por numero de pelicula: '))
-        for pelicula in peliculas:
-            if pelicula["codigo_pelicula"]==op:
-                print()
-                print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+' '*90)
-                print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+f'Usted esta por alquilar la pelicula {pelicula["titulo_pelicula"]}'.center(90,' '))
-                print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+' '*90)
-                peli=True
-                listaPelis.append(pelicula["titulo_pelicula"])
-                break
-            i+=1
-        if peli==False: 
+        try:
+            i=0
             print()
-            print(Back.RED+Fore.WHITE+Style.BRIGHT+' *90')
-            print(Back.RED+Fore.WHITE+Style.BRIGHT+f'LA OPCION {op} NO PERTENECE A UNA PELICULA'.center(90,' '))
-            print(Back.RED+Fore.WHITE+Style.BRIGHT+'INTENTE NUEVAMENTE'.center(90,' '))
-            print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
-            print()
-        else:
-            while True:
+            op=int(input(Fore.WHITE+Style.BRIGHT+'Elije por numero de pelicula: '))
+            for pelicula in peliculas:
+                if pelicula["codigo_pelicula"]==op:
+                    print()
+                    print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+' '*90)
+                    print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+f'Usted esta por alquilar la pelicula {pelicula["titulo_pelicula"]}'.center(90,' '))
+                    print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+' '*90)
+                    peli=True
+                    listaPelis.append(pelicula["titulo_pelicula"])
+                    break
+                i+=1
+            if peli==False: 
                 print()
-                agregar=input(Fore.WHITE+Style.BRIGHT+'¿Desea agregar otra pelicula mas? (S/N): ')
-                agregar=agregar.upper()
-                match agregar:
-                    case "S":
-                        peli=False
-                        break
-                    case "N":
-                        break
-                    case _:
+                print(Back.RED+Fore.WHITE+Style.BRIGHT+' *90')
+                print(Back.RED+Fore.WHITE+Style.BRIGHT+f'LA OPCION {op} NO PERTENECE A UNA PELICULA'.center(90,' '))
+                print(Back.RED+Fore.WHITE+Style.BRIGHT+'INTENTE NUEVAMENTE'.center(90,' '))
+                print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+                print()
+            else:
+                while True:
+                    try:
                         print()
-                        print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
-                        print(Back.RED+Fore.WHITE+Style.BRIGHT+'OPCION INVALIDA PRESIONE S o N'.CENTER(90,' '))
-                        print(Back.RED+Fore.WHITE+Style.BRIGHT+'INTENTE NUEVAMENTE'.CENTER(90,' '))
-                        print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+                        agregar=input(Fore.WHITE+Style.BRIGHT+'¿Desea agregar otra pelicula mas? (S/N): ')
+                        agregar=agregar.upper()
+                        match agregar:
+                            case "S":
+                                peli=False
+                                break
+                            case "N":
+                                break
+                            case _:
+                                print()
+                                print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+                                print(Back.RED+Fore.WHITE+Style.BRIGHT+'OPCION INVALIDA PRESIONE S o N'.CENTER(90,' '))
+                                print(Back.RED+Fore.WHITE+Style.BRIGHT+'INTENTE NUEVAMENTE'.CENTER(90,' '))
+                                print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+                                print()
+                    except ValueError:
                         print()
+                        print(Back.RED+Style.BRIGHT+Fore.WHITE+' '*90)
+                        print(Back.RED+Style.BRIGHT+Fore.WHITE+'POR FAVOR INGRESE S o N'.center(90,' '))
+                        print(Back.RED+Style.BRIGHT+Fore.WHITE+'¡NO ESTA PERMITIDO NUMEROS!'.center(90,' '))
+                        print(Back.RED+Style.BRIGHT+Fore.WHITE+' '*90)
+        except AttributeError:
+            print()
+            print(Back.RED+Style.BRIGHT+Fore.WHITE+' '*90)
+            print(Back.RED+Style.BRIGHT+Fore.WHITE+'POR FAVOR INGRESE UN NUMERO PARA SELECCIONAR LA PELICULA'.center(90,' '))
+            print(Back.RED+Style.BRIGHT+Fore.WHITE+'¡NO ESTA PERMITIDO CARACTERES!'.center(90,' '))
+            print(Back.RED+Style.BRIGHT+Fore.WHITE+' '*90)
     print()
     print(Back.BLUE+Fore.YELLOW+Style.BRIGHT+'Usted se llevara la(s) pelicula(s):'.center(90,' '))
     for cod in listaPelis:
