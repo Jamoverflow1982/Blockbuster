@@ -7,7 +7,7 @@ import os
 
 #CAMBIAR SEGUN SISTEMA OPERATIVO
 sistema='clear' #Limpieza pantalla Linux o Mac
-#sistema='cls' #Limpieza pantalla Windows
+sistema='cls' #Limpieza pantalla Windows
 
 from colorama import Fore, Style, Back, init
 init(autoreset=True)
@@ -87,16 +87,18 @@ while True:
         print(Back.RED+Style.BRIGHT+Fore.WHITE+'PARA SALIR UTILICE EL 4!'.center(90,' '))
         print(Back.RED+Style.BRIGHT+Fore.WHITE+' '*90)
         print()"""
-
+#
 #funciones del usuario
         
 #esta funcion permite ver la lista de usuarios
 def ver_lista_usuario(lista_usuarios):
-    print(f"ID usuario \t Nombre y apellido \t DNI \t\t Telefono" )
+    print(Back.YELLOW+Fore.CYAN+Style.BRIGHT+f"****"*25)
+    print(Fore.CYAN+f"ID usuario\tNombre y apellido\tDNI\t\tTelefono\tDomicilio" )
     for lista in lista_usuarios:
-        print(f"----"*20)
-        print(f"{lista["id_usuario"]} {"\t\t"}{lista["nombre_apellido"]} {"\t"}{lista["dni"]}{"\t"}{lista["contacto"]} ")
-            
+        print(Back.YELLOW+Fore.CYAN+Style.BRIGHT+f"----"*25)
+        print(Fore.CYAN+f"{lista["id_usuario"]} {"\t\t"}{lista["nombre_apellido"]} {"\t"}{lista["dni"]}{"\t"}{lista["contacto"]}{"\t"}{lista["Domicilio"]}")
+    print(Back.YELLOW+Fore.CYAN+Style.BRIGHT+f"****"*25)
+        
 #esta funcion permite agregar usuarios         
 def agregar_usuario(lista_usuarios):
     lista_usuario = {}
@@ -105,6 +107,7 @@ def agregar_usuario(lista_usuarios):
     lista_usuario["dni"] = input("Ingrese DNI: ")
     lista_usuario["nombre_apellido"] = input("Ingrese nombre y apellido: ")
     lista_usuario["contacto"] = input("Ingrese numero de telefono: ")
+    lista_usuario["Domicilio"] = input("Ingrese domicilio: ")
     lista_usuarios.append(lista_usuario)
     
 #esta funcion elimina usuarios con su id de socio
@@ -123,9 +126,10 @@ def modificar_lista_usuario(usuario, lista_usuario):
             modificar_usuario["dni"] = input("Ingrese DNI: ")
             modificar_usuario["nombre_apellido"] = input("Ingrese nombre y apellido: ")
             modificar_usuario["contacto"] = input("Ingrese numero de telefono: ")
+            modificar_usuario["Domicilio"] = input("Ingrese domicilio: ")
             print("Los datos se modificaron correctamente!!")
             return
-    print("No se encontro usuario")    
+    print("No se encontro usuario") 
 
 #lista de usuarios 
 lista_usuarios = [
@@ -134,51 +138,81 @@ lista_usuarios = [
             "id_usuario":1,
             "dni": "22555888",
             "nombre_apellido": "Juan Carlos Peralta",
-            "contacto": "1178998844"
+            "contacto": "1178998844",
+            "Domicilio": "Av. Brasil 235",
+            "psw": 123456
         },
+        
         {
             
             "id_usuario":2,
-            'dni': "22555888",
+            "dni": "22555888",
             "nombre_apellido": "Rodrigo Ramirez",
-            "contacto": "1178988891"
+            "Domicilio": "Av. Mitre 4000",
+            "contacto": "1178988891",
+            "psw": 123456
         },
+        
         {
+            
             "id_usuario":3,
-            'dni': "42555888",
-            "nombre_apellido": "Julian Alvarez",
-            "contacto": "1158989687"
+            "dni": "25555988",
+            "nombre_apellido": "Lautaro Martinez",
+            "contacto": "1169878444",
+            "Domicilio": "Cno. Doctor Federico 2020",
+            "psw": 123456
         },
         {
             
             "id_usuario":4,
-            "dni": "25555988",
-            "nombre_apellido": "Lautaro Martinez",
-            "contacto": "1169878444"
+            "dni": "32955788",
+            "nombre_apellido": "Facundo Aguirre",
+            "Domicilio": "Av. Miranda 7898",
+            "contacto": "1178911844",
+            "psw": 123456
         },
         {
             
             "id_usuario":5,
-            "dni": "32955788",
-            "nombre_apellido": "Facundo Aguirre",
-            "contacto": "1178911844"
+            "dni": "43955788",
+            "nombre_apellido": "Leandro Paredes",
+            "Domicilio": "ESporas 5467",
+            "contacto": "1175915847",
+            "psw": 123456
+        },
+        {
+            
+            "id_usuario":6,
+            "dni": "19955588",
+            "nombre_apellido": "Gonzalo Montiel",
+            "Domicilio": "Av. Dardo rocha 4589",
+            "contacto": "1187987425",
+            "psw": 123456
         }
+        
     ]
 #menu de opciones para manipular los datos del usuario
 opcion = 1
 while opcion != 5:
-    print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+"""
-Lista de usuarios registrados   
-
-    1-AGREGAR USUARIO                         
-    2-VER LISTA DE USUARIOS     
-    3-ELIMINAR USUARIO      
-    4-MODIFICAR USUARIO     
-    5-SALIR                 
+    print(Fore.YELLOW+"""
+*************************************          
+│   Lista de usuarios registrados   │ 
+*************************************
+│    1-AGREGAR USUARIO              │           
+│    2-VER LISTA DE USUARIOS        │
+│    3-ELIMINAR USUARIO             │
+│    4-MODIFICAR USUARIO            │
+│    5-SALIR                        │
+*************************************                   
             """)
-    
-    opcion = int(input("Elige una opción: "))
-    match opcion:
+    try:
+        opcion = int(input(Fore.YELLOW+"Elige una opción: "))
+    except TypeError:
+            print("Ingresa una opcion correcta")
+    except Exception as e:
+        print("Error no previsto", type(e).__name__)   
+        continue
+    match opcion:    
         case 1:
             agregar_usuario(lista_usuarios)
         case 2:
@@ -193,4 +227,4 @@ Lista de usuarios registrados
         case 5:
             print("Programa finalizado - Hasta pronto!!")
         case _:
-            print("Opción incorrecta")        
+            print("Opción incorrecta")
