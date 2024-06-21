@@ -6,7 +6,7 @@ Preentrega 24-6-22
 import os
 
 #CAMBIAR SEGUN SISTEMA OPERATIVO
-sistema='clear' #Limpieza pantalla Linux o Mac
+sistema= #Limpieza pantalla Linux o Mac
 #sistema='cls' #Limpieza pantalla Windows
 
 from colorama import Fore, Style, Back, init
