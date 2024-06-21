@@ -18,50 +18,42 @@ alquilado=[{'usuario': '22555888', 'peliculas': ['El Padrino', 'Toy Story', 'Tit
 #Lista administradores
 adminAcceso=[{"dni":"29298661", "nombre_apellido":"Javier Monzon", "psw":"123456"}]
 
-#lista de usuarios 
+#lista de usuarios (Cristian)
 lista_usuarios = [
-        {
-            
-            "id_usuario":1,
-            "dni": "22555888",
-            "nombre_apellido": "Juan Carlos Peralta",
-            "contacto": "1178998844",
-            "psw":"123456"
-        },
-        {
-            
-            "id_usuario":2,
-            'dni': "22555888",
-            "nombre_apellido": "Rodrigo Ramirez",
-            "contacto": "1178988891",
-            "psw":"123456"
-        },
-        {
-            "id_usuario":3,
-            'dni': "42555888",
-            "nombre_apellido": "Julian Alvarez",
-            "contacto": "1158989687",
-            "psw":"123456"
-        },
-        {
-            
-            "id_usuario":4,
-            "dni": "25555988",
-            "nombre_apellido": "Lautaro Martinez",
-            "contacto": "1169878444",
-            "psw":"123456"
-        },
-        {
-            
-            "id_usuario":5,
-            "dni": "32955788",
-            "nombre_apellido": "Facundo Aguirre",
-            "contacto": "1178911844",
-            "psw":"123456"
-        }
-    ]
+    {"id_usuario": 1,
+        "dni": "22555888",
+        "nombre_apellido": "Juan Carlos Peralta",
+        "contacto": "1178998844",
+        "Domicilio": "Av. Brasil 235",
+        "psw": "123456"},
+    
+    {"id_usuario": 2, "dni": "22555888",
+        "nombre_apellido": "Rodrigo Ramirez",
+        "Domicilio": "Av. Mitre 4000",
+        "contacto": "1178988891",
+        "psw": "123456"},
+    {"id_usuario": 3, "dni": "25555988",
+        "nombre_apellido": "Lautaro Martinez",
+        "contacto": "1169878444",
+        "Domicilio": "Cno. Doctor Federico 2020",
+        "psw": "123456"},
+    {"id_usuario": 4, "dni": "32955788",
+        "nombre_apellido": "Facundo Aguirre",
+        "Domicilio": "Av. Miranda 7898",
+        "contacto": "1178911844",
+        "psw": "123456"},
+    {"id_usuario": 5, "dni": "43955788",
+        "nombre_apellido": "Leandro Paredes",
+        "Domicilio": "ESporas 5467",
+        "contacto": "1175915847",
+        "psw": "123456"},
+    {"id_usuario": 6, "dni": "19955588",
+        "nombre_apellido": "Gonzalo Montiel",
+        "Domicilio": "Av. Dardo Rocha 4589",
+        "contacto": "1187987425", "psw": "123456"}
+]
 
-#Lista de peliculas
+#Lista de peliculas (Patricio)
 peliculas = [
         {
             'codigo_pelicula': 1,
@@ -93,12 +85,12 @@ peliculas = [
         }
     ]
 
-# Muestra la lista de películas.
+# Muestra la lista de películas. (Patricio)
 def lista(peliculas): 
     for pelicula in peliculas:
             print(f"{pelicula['codigo_pelicula']} {pelicula['titulo_pelicula']} {pelicula['genero_pelicula']} {pelicula['año_pelicula']} {pelicula['descripcion_pelicula']}")
 
-# Añade una nueva pelicula a la lista.
+# Añade una nueva pelicula a la lista. (Patricio)
 def alta(peliculas):
     pelicula = {}
     ultima_pelicula = 4 # Comienza en 4 porque ya hay 4 películas en la lista inicial
@@ -114,7 +106,7 @@ def alta(peliculas):
     reasignar_codigos(peliculas)
     print("El Alta se realizó correctamente")
 
-# Elimina una pelicula de la lista por su codigo.
+# Elimina una pelicula de la lista por su codigo. (Patricio)
 def baja(codigo, peliculas):
     for pelicula in peliculas:
         if pelicula["codigo_pelicula"] == codigo:
@@ -124,7 +116,7 @@ def baja(codigo, peliculas):
             return
     print("No se encontró el titulo")
 
-# Modifica una pelicula de la lista por su codigo.
+# Modifica una pelicula de la lista por su codigo. (Patricio)
 def modificar(codigo, peliculas):
     for pelicula in peliculas:
         if pelicula["codigo_pelicula"] == codigo:
@@ -136,7 +128,7 @@ def modificar(codigo, peliculas):
             return
     print("No se encontró el titulo")
 
-# Reasigna el codigo de la lista de peliculas nuevamente.    
+# Reasigna el codigo de la lista de peliculas nuevamente. (Patricio)
 def reasignar_codigos(peliculas):
     ultima_pelicula = 0  # Reiniciar el contador
     for pelicula in peliculas:
@@ -312,6 +304,79 @@ def menuPeliculas():
         else:
             print("Opción incorrecta")
 
+# Función para ver la lista de usuarios (Cristian)
+def ver_lista_usuario(lista_usuarios):
+    print(Back.YELLOW + Fore.CYAN + Style.BRIGHT + "****" * 25)
+    print(Fore.CYAN + f"ID usuario\tNombre y apellido\tDNI\t\tTelefono\tDomicilio")
+    for lista in lista_usuarios:
+        print(Back.YELLOW + Fore.CYAN + Style.BRIGHT + "----" * 25)
+        print(Fore.CYAN + f"{lista['id_usuario']}\t{lista['nombre_apellido']}\t{lista['dni']}\t{lista['contacto']}\t{lista['Domicilio']}")
+    print(Back.YELLOW + Fore.CYAN + Style.BRIGHT + "****" * 25)
+
+# Función para agregar un usuario (Cristian)
+def agregar_usuario(lista_usuarios):
+    lista_usuario = {}
+    ultimo_usuario = lista_usuarios[-1]["id_usuario"]
+    lista_usuario["id_usuario"] = ultimo_usuario + 1
+    lista_usuario["dni"] = input("Ingrese DNI: ")
+    lista_usuario["nombre_apellido"] = input("Ingrese nombre y apellido: ")
+    lista_usuario["contacto"] = input("Ingrese numero de telefono: ")
+    lista_usuario["Domicilio"] = input("Ingrese domicilio: ")
+    lista_usuarios.append(lista_usuario)
+
+# Función para eliminar un usuario (Cristian)
+def eliminar_usuario(usuario, lista_usuarios):
+    for usuario_eliminar in lista_usuarios:
+        if usuario_eliminar["id_usuario"] == usuario:
+            lista_usuarios.remove(usuario_eliminar)
+            print("La baja se realizo correctamente")
+            return
+    print("No se encontro el usuario")
+
+# Función para modificar los datos de un usuario (Cristian)
+def modificar_lista_usuario(usuario, lista_usuarios):
+    for modificar_usuario in lista_usuarios:
+        if modificar_usuario["id_usuario"] == usuario:
+            modificar_usuario["dni"] = input("Ingrese DNI: ")
+            modificar_usuario["nombre_apellido"] = input("Ingrese nombre y apellido: ")
+            modificar_usuario["contacto"] = input("Ingrese numero de telefono: ")
+            modificar_usuario["Domicilio"] = input("Ingrese domicilio: ")
+            print("Los datos se modificaron correctamente!!")
+            return
+    print("No se encontro usuario")
+
+def regUsuarios(lista_usuarios):
+    while True:
+        print(Fore.YELLOW + Style.BRIGHT + "****" * 25)
+        print(Fore.CYAN + Style.BRIGHT + "GESTIÓN DE USUARIOS".center(100, ' '))
+        print(Fore.YELLOW + Style.BRIGHT + "----" * 25)
+        print(Fore.YELLOW + Style.BRIGHT + "1. Ver Usuarios")
+        print(Fore.YELLOW + Style.BRIGHT + "2. Agregar Usuario")
+        print(Fore.YELLOW + Style.BRIGHT + "3. Eliminar Usuario")
+        print(Fore.YELLOW + Style.BRIGHT + "4. Modificar Usuario")
+        print(Fore.YELLOW + Style.BRIGHT + "5. Volver al menú principal")
+        print(Fore.YELLOW + Style.BRIGHT + "****" * 25)
+        print()
+        opcion_usuario = int(input(Fore.CYAN + Style.BRIGHT + "Seleccione una opción: "))
+        os.system(sistema)
+        if opcion_usuario == 1:
+            ver_lista_usuario(lista_usuarios)
+        elif opcion_usuario == 2:
+            agregar_usuario(lista_usuarios)
+        elif opcion_usuario == 3:
+            usuario = int(input("Ingrese el ID del usuario a eliminar: "))
+            eliminar_usuario(usuario, lista_usuarios)
+        elif opcion_usuario == 4:
+            usuario = int(input("Ingrese el ID del usuario a modificar: "))
+            modificar_lista_usuario(usuario, lista_usuarios)
+        elif opcion_usuario == 5:
+            break
+        else:
+            print(Back.RED + Fore.WHITE + Style.BRIGHT + ' ' * 90)
+            print(Back.RED + Fore.WHITE + Style.BRIGHT + 'Por favor, ingrese una opción válida'.center(90, ' '))
+            print(Back.RED + Fore.WHITE + Style.BRIGHT + ' ' * 90)
+            print()
+
 
 os.system(sistema)
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+'GRUPO 14'.center(90,' '))
@@ -350,7 +415,7 @@ while True:
                     menuAlquiler(pos, lista_usuarios, peliculas, alquilado)
                 print()
             case 2:
-                pass
+                regUsuarios(lista_usuarios)
             case 3:
                 usuEncontrado, pos = autorizacion(adminAcceso, "ADMINISTRADOR")
                 if usuEncontrado==True:
