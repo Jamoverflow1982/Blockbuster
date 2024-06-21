@@ -5,9 +5,8 @@ Preentrega 24-6-22
 """
 import os
 
-#CAMBIAR SEGUN SISTEMA OPERATIVO
-sistema='clear' #Limpieza pantalla Linux o Mac
-#sistema='cls' #Limpieza pantalla Windows
+# Detectar el sistema operativo para limpiar la pantalla
+sistema = 'clear' if platform.system() != 'Windows' else 'cls'
 
 from colorama import Fore, Style, Back, init
 init(autoreset=True)
