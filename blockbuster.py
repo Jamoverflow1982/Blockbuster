@@ -1,6 +1,6 @@
 """
 TP fin curso inicial
-Martina - Cristian - Patricio - Javier Monzon
+Cristian Alderete - Patricio Noce - Javier Monzon
 Preentrega 24-6-22
 """
 import os
@@ -237,7 +237,7 @@ print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+f'  #     # #       #     # #       #  
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+f'  #     # #       #     # #     # #   #  #     # #     # #     #    #    #       #    #   ')
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+f'  ######  ####### #######  #####  #    # ######   #####   #####     #    ####### #     #  ')
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+' '*90)
-print(Back.YELLOW+Fore.BLUE+Style.BRIGHT+f'by Martina Luppi, Cristian Alderete, Patricio Noce, Javier Monzon '.rjust(90,' '))
+print(Back.YELLOW+Fore.BLUE+Style.BRIGHT+f'by Cristian Alderete, Patricio Noce, Javier Monzon '.rjust(90,' '))
 
 while True:
     print()
@@ -306,4 +306,3 @@ while True:
         print(Back.RED+Style.BRIGHT+Fore.WHITE+'PARA SALIR UTILICE EL 4!'.center(90,' '))
         print(Back.RED+Style.BRIGHT+Fore.WHITE+' '*90)
         print()
-        
