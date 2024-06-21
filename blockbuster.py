@@ -15,6 +15,9 @@ init(autoreset=True)
 #Peliculas alquiladas (Javier)
 alquilado=[{'usuario': '22555888', 'peliculas': ['El Padrino', 'Toy Story', 'Titanic']}, {'usuario': '42555888', 'peliculas': ['El Rey León', 'Toy Story', 'El Padrino']}]
 
+#Lista administradores
+adminAcceso=[{"dni":"29298661", "nombre_apellido":"Javier Monzon", "psw":"123456"}]
+
 #lista de usuarios 
 lista_usuarios = [
         {
@@ -57,6 +60,8 @@ lista_usuarios = [
             "psw":"123456"
         }
     ]
+
+#Lista de peliculas
 peliculas = [
         {
             'codigo_pelicula': 1,
@@ -88,16 +93,62 @@ peliculas = [
         }
     ]
 
-def lista(peliculas):
+# Muestra la lista de películas.
+def lista(peliculas): 
     for pelicula in peliculas:
             print(f"{pelicula['codigo_pelicula']} {pelicula['titulo_pelicula']} {pelicula['genero_pelicula']} {pelicula['año_pelicula']} {pelicula['descripcion_pelicula']}")
 
-def autorizacion(usuarios, peliculas): #Autenticacion de usuario
-    #Javier
+# Añade una nueva pelicula a la lista.
+def alta(peliculas):
+    pelicula = {}
+    ultima_pelicula = 4 # Comienza en 4 porque ya hay 4 películas en la lista inicial
+    ultima_pelicula += 1
+    pelicula = {
+        "codigo_pelicula": ultima_pelicula,
+        "titulo_pelicula": input("Titulo: "),
+        "genero_pelicula": input("Genero: "),
+        "año_pelicula": int(input("Año: ")),
+        "descripcion_pelicula": input("Descripcion: ")
+    }
+    peliculas.append(pelicula)
+    reasignar_codigos(peliculas)
+    print("El Alta se realizó correctamente")
+
+# Elimina una pelicula de la lista por su codigo.
+def baja(codigo, peliculas):
+    for pelicula in peliculas:
+        if pelicula["codigo_pelicula"] == codigo:
+            peliculas.remove(pelicula)
+            print("La Baja se realizó correctamente")
+            reasignar_codigos(peliculas)
+            return
+    print("No se encontró el titulo")
+
+# Modifica una pelicula de la lista por su codigo.
+def modificar(codigo, peliculas):
+    for pelicula in peliculas:
+        if pelicula["codigo_pelicula"] == codigo:
+            pelicula["genero_pelicula"] = input("Genero: ")
+            pelicula["año_pelicula"] = int(input("Año: "))
+            pelicula["descripcion_pelicula"] = input("Descripcion: ")
+            print("La Modificación se realizó correctamente")
+            reasignar_codigos(peliculas)
+            return
+    print("No se encontró el titulo")
+
+# Reasigna el codigo de la lista de peliculas nuevamente.    
+def reasignar_codigos(peliculas):
+    ultima_pelicula = 0  # Reiniciar el contador
+    for pelicula in peliculas:
+        ultima_pelicula += 1
+        pelicula["codigo_pelicula"] = ultima_pelicula
+
+#Autenticacion de usuario (Javier)
+def autorizacion(usuarios, tipo):
     intento=3
     usu=False #Variable para validacion de usuario
     print(Back.BLUE+Fore.YELLOW+Style.BRIGHT+' '*90)
-    print(Back.BLUE+Fore.YELLOW+Style.BRIGHT+'INGRESA TU DNI Y CONTRASEÑA PARA ALQUILAR PELICULAS!!!'.center(90,' '))
+    print(Back.BLUE+Fore.YELLOW+Style.BRIGHT+f'INGRESA TU DNI Y CONTRASEÑA PARA ACCEDER COMO {tipo} ! ! !'.center(90,' '))
     print(Back.BLUE+Fore.YELLOW+Style.BRIGHT+' '*90)
     print()
     while intento!=0: #Busca en el diccionario de usuarios si se encuentra el DNI
@@ -154,6 +205,7 @@ def autorizacion(usuarios, peliculas): #Autenticacion de usuario
     
     return usu,i #Retorna si se pudo aprobar el acceso y en que posicion del diccionario esta el usuario
 
+#Alquiler de peliculas (Javier)
 def menuAlquiler(posUsuario, usuario, peliculas, alquilado):
     #Javier
     peli=False
@@ -227,6 +279,40 @@ def menuAlquiler(posUsuario, usuario, peliculas, alquilado):
     print(Back.BLUE+Fore.YELLOW+Style.BRIGHT+' '*90)
     alquilado.append({"usuario":usuario[posUsuario]["dni"], "peliculas":listaPelis})
 
+#Menu de peliculas (Patricio)
+def menuPeliculas():
+    opcion = 0
+    while opcion != "5":
+        print("\nListado de Peliculas\n")
+        print("1- Alta")
+        print("2- Baja")
+        print("3- Lista")
+        print("4- Modificación")
+        print("5- Salir")
+        opcion = input("Elige una opción: ")
+        if opcion == "1":
+            print("\nAlta de Pelicula")
+            alta(peliculas)
+        elif opcion == "2":
+            print("\nBaja de Pelicula")
+            lista(peliculas)
+            codigo = int(input("Escribe el Codigo de la Pelicula a eliminar: "))
+            baja(codigo, peliculas)
+        elif opcion == "3":
+            print("\nLista de Peliculas")
+            lista(peliculas)
+        elif opcion == "4":
+            print("\nModificar Pelicula")
+            lista(peliculas)
+            codigo = int(input("Escribe el Codigo de la Pelicula a modificar: "))
+            modificar(codigo, peliculas)
+        elif opcion == "5":
+            print("Salir")
+            print("Cerrando el programa... Adiós")
+        else:
+            print("Opción incorrecta")
+
+
 os.system(sistema)
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+'GRUPO 14'.center(90,' '))
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+f'  ######  #       #######  #####  #    # ######  #     #  #####  ####### ####### ######   ')
@@ -259,14 +345,16 @@ while True:
         print()
         match op:
             case 1:
-                usuEncontrado, pos = autorizacion(lista_usuarios, peliculas)
+                usuEncontrado, pos = autorizacion(lista_usuarios, "USUARIO")
                 if usuEncontrado==True:
                     menuAlquiler(pos, lista_usuarios, peliculas, alquilado)
                 print()
             case 2:
                 pass
             case 3:
-                pass
+                usuEncontrado, pos = autorizacion(adminAcceso, "ADMINISTRADOR")
+                if usuEncontrado==True:
+                    menuPeliculas()
             case 4:
                 print()
                 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+'GRUPO 14'.center(90,' '))
