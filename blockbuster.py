@@ -17,7 +17,7 @@ init(autoreset=True)
 alquilado=[{'usuario': '22555888', 'peliculas': ['El Padrino', 'Toy Story', 'Titanic']}, {'usuario': '42555888', 'peliculas': ['El Rey León', 'Toy Story', 'El Padrino']}]
 
 #Lista administradores
-adminAcceso=[{"dni":"29298661", "nombre_apellido":"Javier Monzon", "psw":"123456"}]
+adminAcceso=[{"dni":"29298661", "nombre_apellido":"Javier Monzon", "psw":"123456"}, {"dni":"35759988", "nombre_apellido":"Cristian Alderete", "psw":"123456"}]
 
 #lista de usuarios (Cristian)
 lista_usuarios = [
