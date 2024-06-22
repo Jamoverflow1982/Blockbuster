@@ -16,8 +16,8 @@ init(autoreset=True)
 #Peliculas alquiladas (Javier)
 alquilado=[{'usuario': '22555888', 'peliculas': ['El Padrino', 'Toy Story', 'Titanic']}, {'usuario': '42555888', 'peliculas': ['El Rey León', 'Toy Story', 'El Padrino']}]
 
-#Lista administradores
-adminAcceso=[{"dni":"29298661", "nombre_apellido":"Javier Monzon", "psw":"123456"}, {"dni":"35759988", "nombre_apellido":"Cristian Alderete", "psw":"123456"}]
+#Lista administradores(Javier)
+adminAcceso=[{"dni":"29298661", "nombre_apellido":"Javier Monzon", "psw":"123456"}]
 
 #lista de usuarios (Cristian)
 lista_usuarios = [
@@ -316,12 +316,18 @@ def menuPeliculas():
 
 # Función para ver la lista de usuarios (Cristian)
 def ver_lista_usuario(lista_usuarios):
-    print(Back.YELLOW + Fore.CYAN + Style.BRIGHT + "****" * 25)
-    print(Fore.CYAN + f"ID usuario\tNombre y apellido\tDNI\t\tTelefono\tDomicilio")
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT +' '*98)
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT +'LISTA DE USUARIOS'.center(98,' '))
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT +' '*98)
+    print()
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT + f"ID Nombre y apellido                    DNI             Telefono        Domicilio                 ")
     for lista in lista_usuarios:
-        print(Back.YELLOW + Fore.CYAN + Style.BRIGHT + "----" * 25)
-        print(Fore.CYAN + f"{lista['id_usuario']}\t{lista['nombre_apellido']}\t{lista['dni']}\t{lista['contacto']}\t{lista['Domicilio']}")
-    print(Back.YELLOW + Fore.CYAN + Style.BRIGHT + "****" * 25)
+        print(Fore.CYAN + f"{lista['id_usuario']}",end='  ')
+        print(Fore.CYAN + f"{lista['nombre_apellido']}",end='                 \t')
+        print(Fore.CYAN + f"{lista['dni']}",end='\t')
+        print(Fore.CYAN + f"{lista['contacto']}",end='\t')
+        print(Fore.CYAN + f"{lista['Domicilio']}")
+    print()
 
 # Función para agregar un usuario (Cristian)
 def agregar_usuario(lista_usuarios):
@@ -363,6 +369,7 @@ def modificar_lista_usuario(usuario, lista_usuarios):
     print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
     print()
 
+#Menu usuarios(Cristian)
 def regUsuarios(lista_usuarios):
     while True:
         print(Back.BLUE+Fore.WHITE + " " * 90)
@@ -399,7 +406,7 @@ def regUsuarios(lista_usuarios):
             print(Back.RED + Fore.WHITE + Style.BRIGHT + ' ' * 90)
             print()
 
-
+#Menu principal(Javier)
 os.system(sistema)
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+'GRUPO 14'.center(90,' '))
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+f'  ######  #       #######  #####  #    # ######  #     #  #####  ####### ####### ######   ')
