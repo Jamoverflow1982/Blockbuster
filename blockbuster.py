@@ -316,12 +316,18 @@ def menuPeliculas():
 
 # Función para ver la lista de usuarios (Cristian)
 def ver_lista_usuario(lista_usuarios):
-    print(Back.YELLOW + Fore.CYAN + Style.BRIGHT + "****" * 25)
-    print(Fore.CYAN + f"ID usuario\tNombre y apellido\tDNI\t\tTelefono\tDomicilio")
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT +' '*98)
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT +'LISTA DE USUARIOS'.center(98,' '))
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT +' '*98)
+    print()
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT + f"ID Nombre y apellido                    DNI             Telefono        Domicilio                 ")
     for lista in lista_usuarios:
-        print(Back.YELLOW + Fore.CYAN + Style.BRIGHT + "----" * 25)
-        print(Fore.CYAN + f"{lista['id_usuario']}\t{lista['nombre_apellido']}\t{lista['dni']}\t{lista['contacto']}\t{lista['Domicilio']}")
-    print(Back.YELLOW + Fore.CYAN + Style.BRIGHT + "****" * 25)
+        print(Fore.CYAN + f"{lista['id_usuario']}",end='  ')
+        print(Fore.CYAN + f"{lista['nombre_apellido']}",end='                 \t')
+        print(Fore.CYAN + f"{lista['dni']}",end='\t')
+        print(Fore.CYAN + f"{lista['contacto']}",end='\t')
+        print(Fore.CYAN + f"{lista['Domicilio']}")
+    print()
 
 # Función para agregar un usuario (Cristian)
 def agregar_usuario(lista_usuarios):
