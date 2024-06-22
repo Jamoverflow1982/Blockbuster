@@ -4,6 +4,7 @@ Cristian Alderete - Patricio Noce - Javier Monzon
 Preentrega 24-6-22
 """
 import os
+import json
 
 #CAMBIAR SEGUN SISTEMA OPERATIVO
 sistema='clear' #Limpieza pantalla Linux o Mac
@@ -275,13 +276,22 @@ def menuAlquiler(posUsuario, usuario, peliculas, alquilado):
 def menuPeliculas():
     opcion = 0
     while opcion != "5":
-        print("\nListado de Peliculas\n")
-        print("1- Alta")
-        print("2- Baja")
-        print("3- Lista")
-        print("4- Modificación")
-        print("5- Salir")
-        opcion = input("Elige una opción: ")
+        print(Back.BLUE+Fore.WHITE +" "*90)
+        print(Back.BLUE+Fore.WHITE + Style.BRIGHT+"LISTADO DE PELICULAS".center(90,' '))
+        print(Back.BLUE+Fore.WHITE +" "*90)
+        print(Back.YELLOW+Fore.BLACK+" "*90)
+        print(Back.YELLOW+Fore.BLACK+"1- Alta".center(90,' '))
+        print(Back.YELLOW+Fore.BLACK+" "*90)
+        print(Back.YELLOW+Fore.BLACK+"2- Baja".center(90,' '))
+        print(Back.YELLOW+Fore.BLACK+" "*90)
+        print(Back.YELLOW+Fore.BLACK+"3- Lista".center(90,' '))
+        print(Back.YELLOW+Fore.BLACK+" "*90)
+        print(Back.YELLOW+Fore.BLACK+"4- Modificación".center(90,' '))
+        print(Back.YELLOW+Fore.BLACK+" "*90)
+        print(Back.YELLOW+Fore.RED+"5- Salir".center(90,' '))
+        print(Back.YELLOW+Fore.BLACK+" "*90)
+        print()
+        opcion = input(Fore.CYAN + Style.BRIGHT + "Seleccione una opción: ")
         if opcion == "1":
             print("\nAlta de Pelicula")
             alta(peliculas)
@@ -347,18 +357,22 @@ def modificar_lista_usuario(usuario, lista_usuarios):
 
 def regUsuarios(lista_usuarios):
     while True:
-        print(Fore.YELLOW + Style.BRIGHT + "****" * 25)
-        print(Fore.CYAN + Style.BRIGHT + "GESTIÓN DE USUARIOS".center(100, ' '))
-        print(Fore.YELLOW + Style.BRIGHT + "----" * 25)
-        print(Fore.YELLOW + Style.BRIGHT + "1. Ver Usuarios")
-        print(Fore.YELLOW + Style.BRIGHT + "2. Agregar Usuario")
-        print(Fore.YELLOW + Style.BRIGHT + "3. Eliminar Usuario")
-        print(Fore.YELLOW + Style.BRIGHT + "4. Modificar Usuario")
-        print(Fore.YELLOW + Style.BRIGHT + "5. Volver al menú principal")
-        print(Fore.YELLOW + Style.BRIGHT + "****" * 25)
+        print(Back.BLUE+Fore.WHITE + " " * 90)
+        print(Back.BLUE+Fore.WHITE + Style.BRIGHT+ "GESTIÓN DE USUARIOS".center(90, ' '))
+        print(Back.BLUE+Fore.WHITE + " " * 90)
+        print(Back.YELLOW+" "*90)
+        print(Back.YELLOW+Fore.BLACK + "1. Ver Usuarios".center(90, ' '))
+        print(Back.YELLOW+" "*90)
+        print(Back.YELLOW+Fore.BLACK + "2. Agregar Usuario".center(90, ' '))
+        print(Back.YELLOW+" "*90)
+        print(Back.YELLOW+Fore.BLACK + "3. Eliminar Usuario".center(90, ' '))
+        print(Back.YELLOW+" "*90)
+        print(Back.YELLOW+Fore.BLACK + "4. Modificar Usuario".center(90, ' '))
+        print(Back.YELLOW+" "*90)
+        print(Back.YELLOW+Fore.RED + "5. Volver al menú principal".center(90, ' '))
+        print(Back.YELLOW+Fore.BLACK + " " * 90)
         print()
         opcion_usuario = int(input(Fore.CYAN + Style.BRIGHT + "Seleccione una opción: "))
-        os.system(sistema)
         if opcion_usuario == 1:
             ver_lista_usuario(lista_usuarios)
         elif opcion_usuario == 2:
@@ -406,21 +420,25 @@ while True:
     print(Back.YELLOW+Fore.BLACK+' '*90)
     print()
     try:
-        op=int(input(Fore.WHITE+Style.BRIGHT+'Selecciona una opcion: '))
+        op=int(input(Fore.CYAN + Style.BRIGHT + "Seleccione una opción: "))
         print()
         match op:
             case 1:
+                os.system(sistema)
                 usuEncontrado, pos = autorizacion(lista_usuarios, "USUARIO")
                 if usuEncontrado==True:
                     menuAlquiler(pos, lista_usuarios, peliculas, alquilado)
                 print()
             case 2:
+                os.system(sistema)
                 regUsuarios(lista_usuarios)
             case 3:
+                os.system(sistema)
                 usuEncontrado, pos = autorizacion(adminAcceso, "ADMINISTRADOR")
                 if usuEncontrado==True:
                     menuPeliculas()
             case 4:
+                os.system(sistema)
                 print()
                 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+'GRUPO 14'.center(90,' '))
                 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+f'  ######  #       #######  #####  #    # ######  #     #  #####  ####### ####### ######   ')
