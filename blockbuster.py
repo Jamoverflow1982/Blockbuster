@@ -16,7 +16,7 @@ init(autoreset=True)
 #Peliculas alquiladas (Javier)
 alquilado=[{'usuario': '22555888', 'peliculas': ['El Padrino', 'Toy Story', 'Titanic']}, {'usuario': '42555888', 'peliculas': ['El Rey León', 'Toy Story', 'El Padrino']}]
 
-#Lista administradores
+#Lista administradores (Javier)
 adminAcceso=[{"dni":"29298661", "nombre_apellido":"Javier Monzon", "psw":"123456"}]
 
 #lista de usuarios (Cristian)
@@ -363,6 +363,7 @@ def modificar_lista_usuario(usuario, lista_usuarios):
     print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
     print()
 
+#Menu usuarios(Cristian)
 def regUsuarios(lista_usuarios):
     while True:
         print(Back.BLUE+Fore.WHITE + " " * 90)
@@ -399,7 +400,7 @@ def regUsuarios(lista_usuarios):
             print(Back.RED + Fore.WHITE + Style.BRIGHT + ' ' * 90)
             print()
 
-
+#Menu principal(Javier)
 os.system(sistema)
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+'GRUPO 14'.center(90,' '))
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+f'  ######  #       #######  #####  #    # ######  #     #  #####  ####### ####### ######   ')
