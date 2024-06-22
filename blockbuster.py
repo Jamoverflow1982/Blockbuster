@@ -4,18 +4,23 @@ Cristian Alderete - Patricio Noce - Javier Monzon
 Preentrega 24-6-22
 """
 import os
+import json
 
 #CAMBIAR SEGUN SISTEMA OPERATIVO
-sistema='clear' #Limpieza pantalla Linux o Mac
-#sistema='cls' #Limpieza pantalla Windows
+#sistema='clear' #Limpieza pantalla Linux o Mac
+sistema='cls' #Limpieza pantalla Windows
 
 from colorama import Fore, Style, Back, init
 init(autoreset=True)
 
+def cargar_json(nombre_archivo):
+    with open(nombre_archivo, 'r') as archivo:
+        datos = json.load(archivo)
+    return datos
 #Peliculas alquiladas (Javier)
 alquilado=[{'usuario': '22555888', 'peliculas': ['El Padrino', 'Toy Story', 'Titanic']}, {'usuario': '42555888', 'peliculas': ['El Rey León', 'Toy Story', 'El Padrino']}]
 
-#Lista administradores
+#Lista administradores(Javier)
 adminAcceso=[{"dni":"29298661", "nombre_apellido":"Javier Monzon", "psw":"123456"}, {"dni":"35759988", "nombre_apellido":"Cristian Alderete", "psw":"123456"} ]
 
 #lista de usuarios (Cristian)
@@ -275,13 +280,22 @@ def menuAlquiler(posUsuario, usuario, peliculas, alquilado):
 def menuPeliculas():
     opcion = 0
     while opcion != "5":
-        print("\nListado de Peliculas\n")
-        print("1- Alta")
-        print("2- Baja")
-        print("3- Lista")
-        print("4- Modificación")
-        print("5- Salir")
-        opcion = input("Elige una opción: ")
+        print(Back.BLUE+Fore.WHITE +" "*90)
+        print(Back.BLUE+Fore.WHITE + Style.BRIGHT+"LISTADO DE PELICULAS".center(90,' '))
+        print(Back.BLUE+Fore.WHITE +" "*90)
+        print(Back.YELLOW+Fore.BLACK+" "*90)
+        print(Back.YELLOW+Fore.BLACK+"1- Alta".center(90,' '))
+        print(Back.YELLOW+Fore.BLACK+" "*90)
+        print(Back.YELLOW+Fore.BLACK+"2- Baja".center(90,' '))
+        print(Back.YELLOW+Fore.BLACK+" "*90)
+        print(Back.YELLOW+Fore.BLACK+"3- Lista".center(90,' '))
+        print(Back.YELLOW+Fore.BLACK+" "*90)
+        print(Back.YELLOW+Fore.BLACK+"4- Modificación".center(90,' '))
+        print(Back.YELLOW+Fore.BLACK+" "*90)
+        print(Back.YELLOW+Fore.RED+"5- Salir".center(90,' '))
+        print(Back.YELLOW+Fore.BLACK+" "*90)
+        print()
+        opcion = input(Fore.CYAN + Style.BRIGHT + "Seleccione una opción: ")
         if opcion == "1":
             print("\nAlta de Pelicula")
             alta(peliculas)
@@ -306,12 +320,18 @@ def menuPeliculas():
 
 # Función para ver la lista de usuarios (Cristian)
 def ver_lista_usuario(lista_usuarios):
-    print(Back.YELLOW + Fore.CYAN + Style.BRIGHT + "****" * 25)
-    print(Fore.CYAN + f"ID usuario\tNombre y apellido\tDNI\t\tTelefono\tDomicilio")
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT +' '*98)
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT +'LISTA DE USUARIOS'.center(98,' '))
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT +' '*98)
+    print()
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT + f"ID Nombre y apellido                    DNI             Telefono        Domicilio                 ")
     for lista in lista_usuarios:
-        print(Back.YELLOW + Fore.CYAN + Style.BRIGHT + "----" * 25)
-        print(Fore.CYAN + f"{lista['id_usuario']}\t{lista['nombre_apellido']}\t{lista['dni']}\t{lista['contacto']}\t{lista['Domicilio']}")
-    print(Back.YELLOW + Fore.CYAN + Style.BRIGHT + "****" * 25)
+        print(Fore.CYAN + f"{lista['id_usuario']}",end='  ')
+        print(Fore.CYAN + f"{lista['nombre_apellido']}",end='                 \t')
+        print(Fore.CYAN + f"{lista['dni']}",end='\t')
+        print(Fore.CYAN + f"{lista['contacto']}",end='\t')
+        print(Fore.CYAN + f"{lista['Domicilio']}")
+    print()
 
 # Función para agregar un usuario (Cristian)
 def agregar_usuario(lista_usuarios):
@@ -322,6 +342,7 @@ def agregar_usuario(lista_usuarios):
     lista_usuario["nombre_apellido"] = input("Ingrese nombre y apellido: ")
     lista_usuario["contacto"] = input("Ingrese numero de telefono: ")
     lista_usuario["Domicilio"] = input("Ingrese domicilio: ")
+    lista_usuario["psw"] = input("Ingrese su contraseña: ")
     lista_usuarios.append(lista_usuario)
 
 # Función para eliminar un usuario (Cristian)
@@ -335,30 +356,42 @@ def eliminar_usuario(usuario, lista_usuarios):
 
 # Función para modificar los datos de un usuario (Cristian)
 def modificar_lista_usuario(usuario, lista_usuarios):
+    print()
     for modificar_usuario in lista_usuarios:
         if modificar_usuario["id_usuario"] == usuario:
             modificar_usuario["dni"] = input("Ingrese DNI: ")
             modificar_usuario["nombre_apellido"] = input("Ingrese nombre y apellido: ")
             modificar_usuario["contacto"] = input("Ingrese numero de telefono: ")
             modificar_usuario["Domicilio"] = input("Ingrese domicilio: ")
-            print("Los datos se modificaron correctamente!!")
+            print(Back.GREEN+Style.BRIGHT+Fore.WHITE+' '*90)
+            print(Back.GREEN+Style.BRIGHT+Fore.WHITE+"LOS DATOS SE MODIFICARON CORRECTAMENTE ! ! !".center(90,' '))
+            print(Back.GREEN+Style.BRIGHT+Fore.WHITE+' '*90)
             return
-    print("No se encontro usuario")
+    print()
+    print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+    print(Back.RED+Fore.WHITE+Style.BRIGHT+"NO SE ENCONTRO USUARIO".center(90,' '))
+    print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+    print()
 
+#Menu usuarios(Cristian)
 def regUsuarios(lista_usuarios):
     while True:
-        print(Fore.YELLOW + Style.BRIGHT + "****" * 25)
-        print(Fore.CYAN + Style.BRIGHT + "GESTIÓN DE USUARIOS".center(100, ' '))
-        print(Fore.YELLOW + Style.BRIGHT + "----" * 25)
-        print(Fore.YELLOW + Style.BRIGHT + "1. Ver Usuarios")
-        print(Fore.YELLOW + Style.BRIGHT + "2. Agregar Usuario")
-        print(Fore.YELLOW + Style.BRIGHT + "3. Eliminar Usuario")
-        print(Fore.YELLOW + Style.BRIGHT + "4. Modificar Usuario")
-        print(Fore.YELLOW + Style.BRIGHT + "5. Volver al menú principal")
-        print(Fore.YELLOW + Style.BRIGHT + "****" * 25)
+        print(Back.BLUE+Fore.WHITE + " " * 90)
+        print(Back.BLUE+Fore.WHITE + Style.BRIGHT+ "GESTIÓN DE USUARIOS".center(90, ' '))
+        print(Back.BLUE+Fore.WHITE + " " * 90)
+        print(Back.YELLOW+" "*90)
+        print(Back.YELLOW+Fore.BLACK + "1. Ver Usuarios".center(90, ' '))
+        print(Back.YELLOW+" "*90)
+        print(Back.YELLOW+Fore.BLACK + "2. Agregar Usuario".center(90, ' '))
+        print(Back.YELLOW+" "*90)
+        print(Back.YELLOW+Fore.BLACK + "3. Eliminar Usuario".center(90, ' '))
+        print(Back.YELLOW+" "*90)
+        print(Back.YELLOW+Fore.BLACK + "4. Modificar Usuario".center(90, ' '))
+        print(Back.YELLOW+" "*90)
+        print(Back.YELLOW+Fore.RED + "5. Volver al menú principal".center(90, ' '))
+        print(Back.YELLOW+Fore.BLACK + " " * 90)
         print()
         opcion_usuario = int(input(Fore.CYAN + Style.BRIGHT + "Seleccione una opción: "))
-        os.system(sistema)
         if opcion_usuario == 1:
             ver_lista_usuario(lista_usuarios)
         elif opcion_usuario == 2:
@@ -377,7 +410,7 @@ def regUsuarios(lista_usuarios):
             print(Back.RED + Fore.WHITE + Style.BRIGHT + ' ' * 90)
             print()
 
-
+#Menu principal(Javier)
 os.system(sistema)
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+'GRUPO 14'.center(90,' '))
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+f'  ######  #       #######  #####  #    # ######  #     #  #####  ####### ####### ######   ')
@@ -406,21 +439,52 @@ while True:
     print(Back.YELLOW+Fore.BLACK+' '*90)
     print()
     try:
-        op=int(input(Fore.WHITE+Style.BRIGHT+'Selecciona una opcion: '))
+        op=int(input(Fore.CYAN + Style.BRIGHT + "Seleccione una opción: "))
         print()
         match op:
             case 1:
+                os.system(sistema)
                 usuEncontrado, pos = autorizacion(lista_usuarios, "USUARIO")
                 if usuEncontrado==True:
                     menuAlquiler(pos, lista_usuarios, peliculas, alquilado)
                 print()
             case 2:
-                regUsuarios(lista_usuarios)
+                os.system(sistema)
+                print(Back.BLUE+Fore.BLACK+' '*90)
+                print(Back.BLUE+Fore.WHITE+Style.BRIGHT+'REGISTRESE PARA UTILIZAR NUESTROS SERVICIOS'.center(90,' '))
+                print(Back.BLUE+Fore.BLACK+' '*90)
+                print()
+                agregar_usuario(lista_usuarios)
             case 3:
+                os.system(sistema)
                 usuEncontrado, pos = autorizacion(adminAcceso, "ADMINISTRADOR")
                 if usuEncontrado==True:
-                    menuPeliculas()
+                    print()
+                    print(Back.BLUE+Fore.BLACK+' '*90)
+                    print(Back.BLUE+Fore.WHITE+Style.BRIGHT+'MENU ADMINISTRADOR'.center(90,' '))
+                    print(Back.BLUE+Fore.BLACK+' '*90)
+                    print(Back.YELLOW+Fore.BLACK+' '*90)
+                    print(Back.YELLOW+Fore.BLACK+'1 - Usuarios'.center(90,' '))
+                    print(Back.YELLOW+Fore.BLACK+' '*90)
+                    print(Back.YELLOW+Fore.BLACK+'2 - Peliculas'.center(90,' '))
+                    print(Back.YELLOW+Fore.BLACK+' '*90)
+                    print(Back.YELLOW+Fore.BLACK+'3 - VOLVER AL MENU ANTERIOR'.center(90,' '))
+                    print(Back.YELLOW+Fore.BLACK+' '*90)
+                    print()
+                    ad=int(input(Fore.CYAN + Style.BRIGHT + "Seleccione una opción: "))
+                    match ad:
+                        case 1:
+                            os.system(sistema)
+                            regUsuarios(lista_usuarios)
+                        case 2:
+                            os.system(sistema)
+                            menuPeliculas()
+                        case 3:
+                            break
+                        case _:
+                            pass
             case 4:
+                os.system(sistema)
                 print()
                 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+'GRUPO 14'.center(90,' '))
                 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+f'  ######  #       #######  #####  #    # ######  #     #  #####  ####### ####### ######   ')
@@ -434,7 +498,7 @@ while True:
                 print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+'LOS PARTICIPANTES DEL GRUPO 14 AGRADECEN LA UTILIZACION DE NUESTRA PLATAFORMA'.center(90,' '))
                 print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+'ESPERAMOS QUE VUELVA PRONTO!!!'.center(90,' '))
                 print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+' '*90)
-                print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+'ALUMNOS: Martina Luppi, Cristian Alderete, Patricio Noce, Javier Monzon'.center(90,' '))
+                print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+'ALUMNOS: Cristian Alderete, Patricio Noce, Javier Monzon'.center(90,' '))
                 print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+'CAC INICIAL 2024 Comision 24093'.center(90,' '))
                 print()
                 break
