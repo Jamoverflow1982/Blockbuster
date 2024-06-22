@@ -332,6 +332,7 @@ def agregar_usuario(lista_usuarios):
     lista_usuario["nombre_apellido"] = input("Ingrese nombre y apellido: ")
     lista_usuario["contacto"] = input("Ingrese numero de telefono: ")
     lista_usuario["Domicilio"] = input("Ingrese domicilio: ")
+    lista_usuario["psw"] = input("Ingrese su contraseña: ")
     lista_usuarios.append(lista_usuario)
 
 # Función para eliminar un usuario (Cristian)
@@ -345,15 +346,22 @@ def eliminar_usuario(usuario, lista_usuarios):
 
 # Función para modificar los datos de un usuario (Cristian)
 def modificar_lista_usuario(usuario, lista_usuarios):
+    print()
     for modificar_usuario in lista_usuarios:
         if modificar_usuario["id_usuario"] == usuario:
             modificar_usuario["dni"] = input("Ingrese DNI: ")
             modificar_usuario["nombre_apellido"] = input("Ingrese nombre y apellido: ")
             modificar_usuario["contacto"] = input("Ingrese numero de telefono: ")
             modificar_usuario["Domicilio"] = input("Ingrese domicilio: ")
-            print("Los datos se modificaron correctamente!!")
+            print(Back.GREEN+Style.BRIGHT+Fore.WHITE+' '*90)
+            print(Back.GREEN+Style.BRIGHT+Fore.WHITE+"LOS DATOS SE MODIFICARON CORRECTAMENTE ! ! !".center(90,' '))
+            print(Back.GREEN+Style.BRIGHT+Fore.WHITE+' '*90)
             return
-    print("No se encontro usuario")
+    print()
+    print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+    print(Back.RED+Fore.WHITE+Style.BRIGHT+"NO SE ENCONTRO USUARIO".center(90,' '))
+    print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+    print()
 
 def regUsuarios(lista_usuarios):
     while True:
@@ -431,12 +439,39 @@ while True:
                 print()
             case 2:
                 os.system(sistema)
-                regUsuarios(lista_usuarios)
+                print(Back.BLUE+Fore.BLACK+' '*90)
+                print(Back.BLUE+Fore.WHITE+Style.BRIGHT+'REGISTRESE PARA UTILIZAR NUESTROS SERVICIOS'.center(90,' '))
+                print(Back.BLUE+Fore.BLACK+' '*90)
+                print()
+                agregar_usuario(lista_usuarios)
             case 3:
                 os.system(sistema)
                 usuEncontrado, pos = autorizacion(adminAcceso, "ADMINISTRADOR")
                 if usuEncontrado==True:
-                    menuPeliculas()
+                    print()
+                    print(Back.BLUE+Fore.BLACK+' '*90)
+                    print(Back.BLUE+Fore.WHITE+Style.BRIGHT+'MENU ADMINISTRADOR'.center(90,' '))
+                    print(Back.BLUE+Fore.BLACK+' '*90)
+                    print(Back.YELLOW+Fore.BLACK+' '*90)
+                    print(Back.YELLOW+Fore.BLACK+'1 - Usuarios'.center(90,' '))
+                    print(Back.YELLOW+Fore.BLACK+' '*90)
+                    print(Back.YELLOW+Fore.BLACK+'2 - Peliculas'.center(90,' '))
+                    print(Back.YELLOW+Fore.BLACK+' '*90)
+                    print(Back.YELLOW+Fore.BLACK+'3 - VOLVER AL MENU ANTERIOR'.center(90,' '))
+                    print(Back.YELLOW+Fore.BLACK+' '*90)
+                    print()
+                    ad=int(input(Fore.CYAN + Style.BRIGHT + "Seleccione una opción: "))
+                    match ad:
+                        case 1:
+                            os.system(sistema)
+                            regUsuarios(lista_usuarios)
+                        case 2:
+                            os.system(sistema)
+                            menuPeliculas()
+                        case 3:
+                            break
+                        case _:
+                            pass
             case 4:
                 os.system(sistema)
                 print()
