@@ -487,7 +487,7 @@ while True:
                 print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+'LOS PARTICIPANTES DEL GRUPO 14 AGRADECEN LA UTILIZACION DE NUESTRA PLATAFORMA'.center(90,' '))
                 print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+'ESPERAMOS QUE VUELVA PRONTO!!!'.center(90,' '))
                 print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+' '*90)
-                print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+'ALUMNOS: Martina Luppi, Cristian Alderete, Patricio Noce, Javier Monzon'.center(90,' '))
+                print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+'ALUMNOS: Cristian Alderete, Patricio Noce, Javier Monzon'.center(90,' '))
                 print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+'CAC INICIAL 2024 Comision 24093'.center(90,' '))
                 print()
                 break
