@@ -406,7 +406,7 @@ def regUsuarios(lista_usuarios):
             print(Back.RED + Fore.WHITE + Style.BRIGHT + ' ' * 90)
             print()
 
-#Devolucion de peliculas por usuario
+#Devolucion de peliculas por usuario (Javier)
 def devolucionPeliculas(posUsu, usuarios, alquilado):
     print(Back.BLUE+Fore.WHITE + " " * 90)
     print(Back.BLUE+Fore.WHITE + Style.BRIGHT+ "DEVOLUCION DE PELICULAS".center(90, ' '))
