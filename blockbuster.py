@@ -14,7 +14,7 @@ from colorama import Fore, Style, Back, init
 init(autoreset=True)
 
 #Peliculas alquiladas (Javier)
-alquilado=[{'usuario': '22555888', 'peliculas': ['El Padrino', 'Toy Story', 'Titanic']}, {'usuario': '42555888', 'peliculas': ['El Rey León', 'Toy Story', 'El Padrino']}]
+alquilado=[{'usuario': '22555888', 'peliculas': ['El Padrino']}, {'usuario': '32955788', 'peliculas': ['El Rey León', 'Toy Story', 'El Padrino']}]
 
 #Lista administradores(Javier)
 adminAcceso=[{"dni":"29298661", "nombre_apellido":"Javier Monzon", "psw":"123456"}]
@@ -221,7 +221,7 @@ def menuAlquiler(posUsuario, usuario, peliculas, alquilado):
                     print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+f'Usted esta por alquilar la pelicula {pelicula["titulo_pelicula"]}'.center(90,' '))
                     print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+' '*90)
                     peli=True
-                    listaPelis.append(pelicula["titulo_pelicula"])
+                    listaPelis.append(pelicula["titulo_pelicula"]) #Genera lista de nombre de peliculas para mostrar al final
                     break
                 i+=1
             if peli==False: 
@@ -406,6 +406,65 @@ def regUsuarios(lista_usuarios):
             print(Back.RED + Fore.WHITE + Style.BRIGHT + ' ' * 90)
             print()
 
+#Devolucion de peliculas por usuario (Javier)
+def devolucionPeliculas(posUsu, usuarios, alquilado):
+    print(Back.BLUE+Fore.WHITE + " " * 90)
+    print(Back.BLUE+Fore.WHITE + Style.BRIGHT+ "DEVOLUCION DE PELICULAS".center(90, ' '))
+    print(Back.BLUE+Fore.WHITE + " " * 90)
+    print()
+    i=0
+    enc=0
+    docu=usuarios[posUsu]["dni"] #Toma el dni del usuario registrado
+    nom=usuarios[posUsu]["nombre_apellido"] #Toma el nombre y apellido
+    for alquiler in alquilado:
+        if alquiler["usuario"]==docu: 
+            posalq=i
+            enc+=1
+        i=+1
+    if enc>0:
+        print()
+        cant=len(alquilado[posalq]["peliculas"])
+        if cant==1:
+            print(f'{nom} La pelicula alquilada que tenes es ',end='')
+            for pelicula in alquilado[posalq]["peliculas"]:
+                print(pelicula)
+        elif cant>1:
+            print(f'{nom} tenes alquiladas las peliculas:'.center(90,' '))
+            for pelicula in alquilado[posalq]["peliculas"]:
+                print(pelicula.center(90,' '))
+            print()
+        while True:
+            
+            print()
+            dev=input('Desea realizar la devolucion? (S o N): ')
+            print()
+            dev=dev.upper()
+            match dev:
+                case 'S':
+                    alquilado.pop(posalq)
+                    print(Back.GREEN+Fore.WHITE+Style.BRIGHT+' '*90)
+                    print(Back.GREEN+Fore.WHITE+Style.BRIGHT+'DEVOLUCION EXITOSA ! ! !'.center(90,' '))
+                    print(Back.GREEN+Fore.WHITE+Style.BRIGHT+' '*90)
+                    break
+                case 'N':
+                    print(Back.WHITE+Fore.BLUE+Style.BRIGHT+' '*90)
+                    print(Back.WHITE+Fore.BLUE+Style.BRIGHT+'NO SE DEVOLVIO NINGUNA PELICULA ! ! !'.center(90,' '))
+                    print(Back.WHITE+Fore.BLUE+Style.BRIGHT+' '*90)
+                    print()
+                    break
+                case _:
+                    print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+                    print(Back.RED+Fore.WHITE+Style.BRIGHT+'CARACTER INVALIDO!!!'.center(90,' '))
+                    print(Back.RED+Fore.WHITE+Style.BRIGHT+'Ingrese S o N'.center(90,' '))
+                    print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+                    print()
+    else:
+        print(Back.WHITE+Fore.BLACK+Style.BRIGHT+' '*90)
+        print(Back.WHITE+Fore.BLACK+Style.BRIGHT+f'{nom} no tenes ninguna pelicula alquilada ! ! !'.center(90,' '))
+        print(Back.WHITE+Fore.BLACK+Style.BRIGHT+' '*90)
+        print()
+
+
 #Menu principal(Javier)
 os.system(sistema)
 print(Back.BLUE+Style.BRIGHT+Fore.YELLOW+'GRUPO 14'.center(90,' '))
@@ -442,7 +501,37 @@ while True:
                 os.system(sistema)
                 usuEncontrado, pos = autorizacion(lista_usuarios, "USUARIO")
                 if usuEncontrado==True:
-                    menuAlquiler(pos, lista_usuarios, peliculas, alquilado)
+                    while True:
+                        print()
+                        print(Back.BLUE+Fore.BLACK+' '*90)
+                        print(Back.BLUE+Fore.WHITE+Style.BRIGHT+'MENU DE USUARIO'.center(90,' '))
+                        print(Back.BLUE+Fore.BLACK+' '*90)
+                        print(Back.YELLOW+Fore.BLACK+' '*90)
+                        print(Back.YELLOW+Fore.BLACK+'1 - Alquilar'.center(90,' '))
+                        print(Back.YELLOW+Fore.BLACK+' '*90)
+                        print(Back.YELLOW+Fore.BLACK+'2 - Devolucion'.center(90,' '))
+                        print(Back.YELLOW+Fore.BLACK+' '*90)
+                        print(Back.YELLOW+Fore.RED+'3 - VOLVER AL MENU ANTERIOR'.center(90,' '))
+                        print(Back.YELLOW+Fore.BLACK+' '*90)
+                        print()
+                        ad=int(input(Fore.CYAN + Style.BRIGHT + "Seleccione una opción: "))
+                        match ad:
+                            case 1:
+                                menuAlquiler(pos, lista_usuarios, peliculas, alquilado)
+                                True
+                            case 2:
+                                devolucionPeliculas(pos, lista_usuarios,alquilado)
+                                True
+                            case 3:
+                                break
+                            case _:
+                                print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+                                print(Back.RED+Fore.WHITE+Style.BRIGHT+'CARACTER INVALIDO!!!'.center(90,' '))
+                                print(Back.RED+Fore.WHITE+Style.BRIGHT+'Ingrese S o N'.center(90,' '))
+                                print(Back.RED+Fore.WHITE+Style.BRIGHT+' '*90)
+                                print()
+                    
+                    
                 print()
             case 2:
                 os.system(sistema)
