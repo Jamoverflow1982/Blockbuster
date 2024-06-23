@@ -7,8 +7,8 @@ import os
 import json
 
 #CAMBIAR SEGUN SISTEMA OPERATIVO
-#sistema='clear' #Limpieza pantalla Linux o Mac
-sistema='cls' #Limpieza pantalla Windows
+sistema='clear' #Limpieza pantalla Linux o Mac
+#sistema='cls' #Limpieza pantalla Windows
 
 from colorama import Fore, Style, Back, init
 init(autoreset=True)
