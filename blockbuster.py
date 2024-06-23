@@ -17,6 +17,7 @@ alquilado=[{'usuario': '22555888', 'peliculas': ['El Padrino', 'Toy Story', 'Tit
 
 #Lista administradores
 adminAcceso=[{"dni":"29298661", "nombre_apellido":"Javier Monzon", "psw":"123456"}]
+adminAcceso2=[{"dni":"33246329", "nombre_apellido":"Patricio Noce", "psw":"112233"}]
 
 #lista de usuarios (Cristian)
 lista_usuarios = [
