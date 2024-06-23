@@ -14,26 +14,38 @@ from colorama import Fore, Style, Back, init
 init(autoreset=True)
 
 def cargar_json(nombre_archivo):
-    with open(nombre_archivo, 'r') as archivo:
-        datos = json.load(archivo)
+    archivo = open(nombre_archivo, 'r')
+    datos = json.load(archivo)
+    archivo.close()
     return datos
-datos = cargar_json('archivos.json')
+
+def guardar_json(nombre_archivo, datos):
+    archivo = open(nombre_archivo, 'w') # Abrimos el archivo en modo escritura
+    json.dump(datos, archivo) # Volcamos los datos de la lista al archivo JSON
+    archivo.close() # Cerramos el archivo
+
+#Diccionarios
+datos = cargar_json('archivos.json') #Carga desde el archivo
 lista_usuarios = datos["lista_usuarios"]
 peliculas = datos["peliculas"]
+alquilado = datos["alquilado"]
 
 #Peliculas alquiladas (Javier)
-alquilado=[{'usuario': '22555888', 'peliculas': ['El Padrino', 'Toy Story', 'Titanic']}, {'usuario': '42555888', 'peliculas': ['El Rey León', 'Toy Story', 'El Padrino']}]
+#alquilado=[{'usuario': '22555888', 'peliculas': ['El Padrino', 'Toy Story', 'Titanic']}, {'usuario': '42555888', 'peliculas': ['El Rey León', 'Toy Story', 'El Padrino']}]
 
 #Lista administradores(Javier)
 adminAcceso=[
                 {"dni":"29298661", "nombre_apellido":"Javier Monzon", "psw":"123456"},
                 {"dni":"35759988", "nombre_apellido":"Cristian Alderete", "psw":"123456"},
-                {"dni":"33246329", "nombre_apellido":"Patricio Noce", "psw":"123456"} ]
+                {"dni":"33246329", "nombre_apellido":"Patricio Noce", "psw":"123456"},
+                {"dni":"admin", "nombre_apellido":"ADMINISTRADOR", "psw":"admin"}]
 
 # Muestra la lista de películas. (Patricio)
 def lista(peliculas): 
     for pelicula in peliculas:
-            print(f"{pelicula['codigo_pelicula']} {pelicula['titulo_pelicula']} {pelicula['genero_pelicula']} {pelicula['año_pelicula']} {pelicula['descripcion_pelicula']}")
+            print(f"Cod:{pelicula['codigo_pelicula']:3} Titulo: {pelicula['titulo_pelicula']:15} Genero: {pelicula['genero_pelicula']:15} Año: {pelicula['año_pelicula']}")
+            print(f"Descripcion: {pelicula['descripcion_pelicula']}")
+            print()
 
 # Añade una nueva pelicula a la lista. (Patricio)
 def alta(peliculas):
@@ -237,18 +249,30 @@ def menuPeliculas():
         print()
         opcion = input(Fore.CYAN + Style.BRIGHT + "Seleccione una opción: ")
         if opcion == "1":
-            print("\nAlta de Pelicula")
+            print(Back.BLUE+Fore.BLACK+' '*90)
+            print(Back.BLUE+Fore.WHITE+Style.BRIGHT+'ALTA DE PELICULA'.center(90,' '))
+            print(Back.BLUE+Fore.BLACK+' '*90)
+            print()
             alta(peliculas)
         elif opcion == "2":
-            print("\nBaja de Pelicula")
+            print(Back.BLUE+Fore.BLACK+' '*90)
+            print(Back.BLUE+Fore.WHITE+Style.BRIGHT+'BAJA DE PELICULAS'.center(90,' '))
+            print(Back.BLUE+Fore.BLACK+' '*90)
+            print()
             lista(peliculas)
             codigo = int(input("Escribe el Codigo de la Pelicula a eliminar: "))
             baja(codigo, peliculas)
         elif opcion == "3":
-            print("\nLista de Peliculas")
+            print(Back.BLUE+Fore.BLACK+' '*90)
+            print(Back.BLUE+Fore.WHITE+Style.BRIGHT+'LISTA DE PELICULAS'.center(90,' '))
+            print(Back.BLUE+Fore.BLACK+' '*90)
+            print()
             lista(peliculas)
         elif opcion == "4":
-            print("\nModificar Pelicula")
+            print(Back.BLUE+Fore.BLACK+' '*90)
+            print(Back.BLUE+Fore.WHITE+Style.BRIGHT+'MODIFICAR PELICULA'.center(90,' '))
+            print(Back.BLUE+Fore.BLACK+' '*90)
+            print()
             lista(peliculas)
             codigo = int(input("Escribe el Codigo de la Pelicula a modificar: "))
             modificar(codigo, peliculas)
@@ -527,6 +551,12 @@ while True:
                 print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+'ALUMNOS: Cristian Alderete, Patricio Noce, Javier Monzon'.center(90,' '))
                 print(Back.YELLOW+Fore.WHITE+Style.BRIGHT+'CAC INICIAL 2024 Comision 24093'.center(90,' '))
                 print()
+                
+                datos["lista_usuarios"]=lista_usuarios
+                datos["peliculas"]=peliculas
+                datos["alquilado"]=alquilado
+                guardar_json('archivos.json', datos)
+                
                 break
             case _:
                 print()
