@@ -260,16 +260,16 @@ def menuPeliculas():
 
 # Función para ver la lista de usuarios (Cristian)
 def ver_lista_usuario(lista_usuarios):
-    print(Back.BLUE+Fore.WHITE+Style.BRIGHT +' '*98)
-    print(Back.BLUE+Fore.WHITE+Style.BRIGHT +'LISTA DE USUARIOS'.center(98,' '))
-    print(Back.BLUE+Fore.WHITE+Style.BRIGHT +' '*98)
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT +' '*90)
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT +'LISTA DE USUARIOS'.center(90,' '))
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT +' '*90)
     print()
-    print(Back.BLUE+Fore.WHITE+Style.BRIGHT + f"ID Nombre y apellido                    DNI             Telefono        Domicilio                 ")
+    print(Back.BLUE+Fore.WHITE+Style.BRIGHT + f"ID  Nombre y apellido         DNI        Telefono        Domicilio".ljust(90,' '))
     for lista in lista_usuarios:
-        print(Fore.CYAN + f"{lista['id_usuario']}",end='  ')
-        print(Fore.CYAN + f"{lista['nombre_apellido']}",end='                 \t')
-        print(Fore.CYAN + f"{lista['dni']}",end='\t')
-        print(Fore.CYAN + f"{lista['contacto']}",end='\t')
+        print(Fore.CYAN + f"{lista['id_usuario']:3}",end=' ')
+        print(Fore.CYAN + f"{lista['nombre_apellido']:25}",end=' ')
+        print(Fore.CYAN + f"{lista['dni']:10}",end=' ')
+        print(Fore.CYAN + f"{lista['contacto']:15}",end=' ')
         print(Fore.CYAN + f"{lista['Domicilio']}")
     print()
 
