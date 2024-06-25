@@ -7,16 +7,17 @@ import os
 import json
 
 #CAMBIAR SEGUN SISTEMA OPERATIVO
-#sistema='clear' #Limpieza pantalla Linux o Mac
-sistema='cls' #Limpieza pantalla Windows
+sistema='clear' #Limpieza pantalla Linux o Mac
+#sistema='cls' #Limpieza pantalla Windows
 
 from colorama import Fore, Style, Back, init
 init(autoreset=True)
 
 def cargar_json(nombre_archivo):
-    with open(nombre_archivo, 'r') as archivo:
+    with open(nombre_archivo, 'r', encoding='utf-8') as archivo:
         datos = json.load(archivo)
     return datos
+
 datos = cargar_json('archivos.json')
 lista_usuarios = datos["lista_usuarios"]
 peliculas = datos["peliculas"]
