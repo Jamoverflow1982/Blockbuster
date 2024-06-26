@@ -14,7 +14,7 @@ from colorama import Fore, Style, Back, init
 init(autoreset=True)
 
 def cargar_json(nombre_archivo):
-    archivo = open(nombre_archivo, 'r')
+    archivo = open(nombre_archivo, 'r', encoding='utf-8')
     datos = json.load(archivo)
     archivo.close()
     return datos
